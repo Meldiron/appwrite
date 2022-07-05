@@ -33,6 +33,7 @@ use Utopia\Validator\Text;
 
 Config::setParam('domainVerification', false);
 Config::setParam('cookieDomain', 'localhost');
+Config::setParam('cookieDomainProject', 'localhost');
 Config::setParam('cookieSamesite', Response::COOKIE_SAMESITE_NONE);
 
 App::init(function (App $utopia, Request $request, Response $response, Document $console, Document $project, Database $dbForConsole, Document $user, Locale $locale, array $clients) {
@@ -162,6 +163,9 @@ App::init(function (App $utopia, Request $request, Response $response, Document 
     )
         ? null
         : '.' . $request->getHostname());
+
+    
+    Config::setParam('cookieDomainProject', $refDomainOrigin);
 
     /*
      * Response format
